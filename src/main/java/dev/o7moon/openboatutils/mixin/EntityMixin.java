@@ -47,13 +47,20 @@ public abstract class EntityMixin {
         throw new UnsupportedOperationException("Implemented via mixin");
     }
 
+    //? < 26.2 {
     @Shadow
     private static List<VoxelShape> collectColliders(@Nullable Entity entity, Level level, List<VoxelShape> list, AABB aABB) {
         throw new UnsupportedOperationException("Implemented via mixin");
     }
+    //? }
 
     @Shadow
     private Level level;
+
+    @Shadow
+    private static List<VoxelShape> collectCollidersIgnoringWorldBorder(Entity par1, Level par2, List<VoxelShape> par3, AABB par4) {
+        throw new UnsupportedOperationException("Implemented via mixin");
+    }
 
     @Inject(method = "maxUpStep", at = @At("HEAD"), cancellable = true)
     public void getStepHeight(CallbackInfoReturnable<Float> cir) {
@@ -63,6 +70,7 @@ public abstract class EntityMixin {
         }
     }
 
+    //? < 26.2 {
     @Redirect(
             method = "move",
             at = @At(
@@ -71,6 +79,20 @@ public abstract class EntityMixin {
             )
     )
     private void hookWalltap(Entity instance, double x, double y, double z) {
+    //? } else {
+    /*@Redirect(
+            method = "move",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/world/entity/Entity;setDeltaMovement(Lnet/minecraft/world/phys/Vec3;)V"
+            )
+    )
+    private void hookWalltap(Entity instance, Vec3 vec3) {
+        double x = vec3.x();
+        double y = vec3.y();
+        double z = vec3.z();
+    *///? }
+
         if ((Object) this instanceof AbstractBoat) {
             ISettingContext context = OpenBoatUtils.instance.getActiveContext();
 
@@ -285,12 +307,21 @@ public abstract class EntityMixin {
             AABB movedBox = box.move(best.x, best.y, best.z);
             AABB stretched = movedBox.expandTowards(remaining);
 
+            //? >= 26.2 {
+            /*List<VoxelShape> newColliders = collectCollidersIgnoringWorldBorder(
+                    boat,
+                    this.level,
+                    colliders,
+                    stretched
+            );
+            *///? } else {
             List<VoxelShape> newColliders = collectColliders(
                     boat,
                     this.level,
                     colliders,
                     stretched
             );
+            //? }
 
             Vec3 nextFallback = collideWithShapes(remaining, movedBox, newColliders);
 

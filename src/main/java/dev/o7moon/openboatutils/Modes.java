@@ -1,6 +1,7 @@
 package dev.o7moon.openboatutils;
 
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Blocks;
 
 public enum Modes {
@@ -148,14 +149,14 @@ public enum Modes {
                     .breakSlimePlease();
 
             case JUMP_BLOCKS -> context
-                    .setBlockSetting(BuiltInRegistries.BLOCK.getKey(Blocks.ORANGE_CONCRETE), PerBlockSettingType.JUMP_FORCE, 0.36f)
-                    .setBlockSetting(BuiltInRegistries.BLOCK.getKey(Blocks.BLACK_CONCRETE), PerBlockSettingType.JUMP_FORCE, 0.0f)
-                    .setBlockSetting(BuiltInRegistries.BLOCK.getKey(Blocks.GREEN_CONCRETE), PerBlockSettingType.JUMP_FORCE, 0.5f)
-                    .setBlockSetting(BuiltInRegistries.BLOCK.getKey(Blocks.YELLOW_CONCRETE), PerBlockSettingType.JUMP_FORCE, 0.18f);
+                    .setBlockSetting(ResourceLocation.withDefaultNamespace("orange_concrete"), PerBlockSettingType.JUMP_FORCE, 0.36f)
+                    .setBlockSetting(ResourceLocation.withDefaultNamespace("black_concrete"), PerBlockSettingType.JUMP_FORCE, 0.0f)
+                    .setBlockSetting(ResourceLocation.withDefaultNamespace("green_concrete"), PerBlockSettingType.JUMP_FORCE, 0.5f)
+                    .setBlockSetting(ResourceLocation.withDefaultNamespace("yellow_concrete"), PerBlockSettingType.JUMP_FORCE, 0.18f);
 
             case BOOSTER_BLOCKS -> context
-                    .setBlockSetting(BuiltInRegistries.BLOCK.getKey(Blocks.MAGENTA_GLAZED_TERRACOTTA), PerBlockSettingType.FORWARDS_ACCEL, 0.08f)
-                    .setBlockSetting(BuiltInRegistries.BLOCK.getKey(Blocks.LIGHT_GRAY_GLAZED_TERRACOTTA), PerBlockSettingType.YAW_ACCEL, 0.08f);
+                    .setBlockSetting(ResourceLocation.withDefaultNamespace("magenta_glazed_terracotta"), PerBlockSettingType.FORWARDS_ACCEL, 0.08f)
+                    .setBlockSetting(ResourceLocation.withDefaultNamespace("light_gray_glazed_terracotta"), PerBlockSettingType.YAW_ACCEL, 0.08f);
 
             case DEFAULT_ICE -> context.setDefaultSlipperiness(0.98f);
 

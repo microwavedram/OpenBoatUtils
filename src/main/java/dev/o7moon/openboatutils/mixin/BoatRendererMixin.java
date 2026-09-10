@@ -12,7 +12,9 @@ import dev.o7moon.openboatutils.ScaledBoatRenderState;
 import net.minecraft.client.renderer.state.CameraRenderState;
 //? }
 *///? }
+//? < 26.2 {
 import net.minecraft.client.renderer.MultiBufferSource;
+//? }
 import net.minecraft.client.renderer.entity.AbstractBoatRenderer;
 import net.minecraft.client.renderer.entity.state.BoatRenderState;
 //? >= 1.21.11 {

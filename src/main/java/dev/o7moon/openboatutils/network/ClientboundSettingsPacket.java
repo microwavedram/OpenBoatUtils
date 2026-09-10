@@ -2,6 +2,7 @@ package dev.o7moon.openboatutils.network;
 
 import dev.o7moon.openboatutils.*;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
@@ -307,7 +308,13 @@ public enum ClientboundSettingsPacket {
             }
             case ADD_COLLISION_ENTITYTYPE_FILTER -> {
                 Arrays.stream(buf.readUtf().split(","))
+                        //? >= 26.2 {
+                        /*.map(string -> {
+                            return BuiltInRegistries.ENTITY_TYPE.getOptional(ResourceLocation.tryParse(string));
+                        })
+                        *///? } else {
                         .map(EntityType::byString)
+                        //? }
                         .filter(Optional::isPresent)
                         .map(Optional::get)
                         .forEach(context::addToCollisionFilter);
