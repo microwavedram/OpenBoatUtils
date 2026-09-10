@@ -27,7 +27,7 @@ import net.minecraft.world.entity.EntityType;
 *///? }
 import net.minecraft.world.entity.MoverType;
 import net.minecraft.world.entity.player.Player;
-//? >= 26.1 {
+//? >= 1.21.11 {
 /*import net.minecraft.world.entity.vehicle.boat.AbstractBoat;
 *///? } else {
 import net.minecraft.world.entity.vehicle.AbstractBoat;
@@ -67,8 +67,7 @@ public abstract class BoatMixin implements GetStepHeight, GetNearbySetting {
     @Shadow private boolean inputUp;
     @Shadow private boolean inputDown;
 
-    //? >= 26.1 {
-
+    //? >= 1.21.9 {
     //? } else {
     @Shadow private float invFriction;
     //? }
@@ -255,7 +254,7 @@ public abstract class BoatMixin implements GetStepHeight, GetNearbySetting {
     }
     //? }
 
-    //? >= 26.1 {
+    //? >= 1.21.11 {
     /*@Redirect(method = "getPaddleSound", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/vehicle/boat/AbstractBoat;getStatus()Lnet/minecraft/world/entity/vehicle/boat/AbstractBoat$Status;"))
     *///? } else {
     @Redirect(method = "getPaddleSound", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/vehicle/AbstractBoat;getStatus()Lnet/minecraft/world/entity/vehicle/AbstractBoat$Status;"))
@@ -264,7 +263,7 @@ public abstract class BoatMixin implements GetStepHeight, GetNearbySetting {
         return hookgetStatus(instance, false);
     }
 
-    //? >= 26.1 {
+    //? >= 1.21.11 {
     /*@Redirect(method = {"tick"}, at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/vehicle/boat/AbstractBoat;getStatus()Lnet/minecraft/world/entity/vehicle/boat/AbstractBoat$Status;"))
     *///? } else {
     @Redirect(method = {"tick"}, at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/vehicle/AbstractBoat;getStatus()Lnet/minecraft/world/entity/vehicle/AbstractBoat$Status;"))
@@ -397,7 +396,7 @@ public abstract class BoatMixin implements GetStepHeight, GetNearbySetting {
         cir.cancel();
     }
 
-    //? >= 26.1 {
+    //? >= 1.21.11 {
     /*@Redirect(method = "controlBoat", at = @At(value = "FIELD", target = "Lnet/minecraft/world/entity/vehicle/boat/AbstractBoat;deltaRotation:F", opcode = Opcodes.PUTFIELD))
     *///? } else {
     @Redirect(method = "controlBoat", at = @At(value = "FIELD", target = "Lnet/minecraft/world/entity/vehicle/AbstractBoat;deltaRotation:F", opcode = Opcodes.PUTFIELD))
@@ -446,7 +445,7 @@ public abstract class BoatMixin implements GetStepHeight, GetNearbySetting {
         return openboatutils$getAverageNearbySetting(context, (AbstractBoat) (Object) this, PerBlockSettingType.BACKWARDS_ACCEL);
     }
 
-    //? >= 26.1 {
+    //? >= 1.21.11 {
     /*@Redirect(method = "controlBoat", at = @At(value = "FIELD", target = "Lnet/minecraft/world/entity/vehicle/boat/AbstractBoat;inputUp:Z", opcode = Opcodes.GETFIELD, ordinal = 0))
     *///? } else {
     @Redirect(method = "controlBoat", at = @At(value = "FIELD", target = "Lnet/minecraft/world/entity/vehicle/AbstractBoat;inputUp:Z", opcode = Opcodes.GETFIELD, ordinal = 0))
@@ -459,12 +458,11 @@ public abstract class BoatMixin implements GetStepHeight, GetNearbySetting {
         return false;
     }
 
-    //? >= 26.1 {
+    //? >= 1.21.11 {
     /*@Redirect(method = "controlBoat", at = @At(value = "FIELD", target = "Lnet/minecraft/world/entity/vehicle/boat/AbstractBoat;inputDown:Z", opcode = Opcodes.GETFIELD, ordinal = 0))
     *///? } else {
     @Redirect(method = "controlBoat", at = @At(value = "FIELD", target = "Lnet/minecraft/world/entity/vehicle/AbstractBoat;inputDown:Z", opcode = Opcodes.GETFIELD, ordinal = 0))
      //? }
-
     private boolean pressingBackHook(AbstractBoat instance) {
         @Nullable ISettingContext context = OpenBoatUtils.instance.getActiveContext();
 
@@ -480,7 +478,7 @@ public abstract class BoatMixin implements GetStepHeight, GetNearbySetting {
         return false;
     }
 
-    //? >= 26.1 {
+    //? >= 1.21.11 {
     /*@Inject(
             method = "floatBoat",
             at = @At(
@@ -678,7 +676,7 @@ public abstract class BoatMixin implements GetStepHeight, GetNearbySetting {
 
 
     // Increase resolution for wall priority by running move() multiple times in smaller increments
-    //? >= 26.1 {
+    //? >= 1.21.11 {
     /*@Redirect(method = "tick()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/vehicle/boat/AbstractBoat;move(Lnet/minecraft/world/entity/MoverType;Lnet/minecraft/world/phys/Vec3;)V"))
     *///? } else {
     @Redirect(method = "tick()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/vehicle/AbstractBoat;move(Lnet/minecraft/world/entity/MoverType;Lnet/minecraft/world/phys/Vec3;)V"))

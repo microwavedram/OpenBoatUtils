@@ -1,6 +1,6 @@
 package dev.o7moon.openboatutils.mixin;
 
-//? >= 26.1 {
+//? >= 1.21.11 {
 /*import net.minecraft.world.entity.vehicle.boat.AbstractBoat;
 *///? } else {
 import net.minecraft.world.entity.vehicle.AbstractBoat;

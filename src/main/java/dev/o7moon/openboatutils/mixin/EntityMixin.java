@@ -20,7 +20,7 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.Pose;
-//? >= 26.1 {
+//? >= 1.21.11 {
 /*import net.minecraft.world.entity.vehicle.boat.AbstractBoat;
 *///? } else {
 import net.minecraft.world.entity.vehicle.AbstractBoat;

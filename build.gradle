@@ -99,7 +99,7 @@ loom {
 
 stonecutter {
     replacements.string(
-            current.parsed.matches('>=26.1'),
+            current.parsed.matches('>=1.21.11'),
             "!identifier"
     ) {
         replace 'ResourceLocation', 'Identifier'

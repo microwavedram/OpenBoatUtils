@@ -5,7 +5,7 @@ import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
-//? >= 26.1 {
+//? >= 1.21.11 {
 /*import net.minecraft.world.entity.vehicle.boat.AbstractBoat;
 *///? } else {
 import net.minecraft.world.entity.vehicle.AbstractBoat;

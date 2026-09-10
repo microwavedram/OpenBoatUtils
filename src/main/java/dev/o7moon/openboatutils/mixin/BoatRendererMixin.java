@@ -15,7 +15,7 @@ import net.minecraft.client.renderer.state.CameraRenderState;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.AbstractBoatRenderer;
 import net.minecraft.client.renderer.entity.state.BoatRenderState;
-//? >= 26.1 {
+//? >= 1.21.11 {
 /*import net.minecraft.world.entity.vehicle.boat.AbstractBoat;
 *///? } else {
 import net.minecraft.world.entity.vehicle.AbstractBoat;
@@ -48,7 +48,6 @@ public abstract class BoatRendererMixin {
     }
 
     //? >= 1.21.9 {
-
     /*//? >= 26.1 {
     /^@Inject(method = "submit(Lnet/minecraft/client/renderer/entity/state/BoatRenderState;Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/SubmitNodeCollector;Lnet/minecraft/client/renderer/state/level/CameraRenderState;)V", at = @At("HEAD"))
     ^///? } else {
@@ -113,7 +112,7 @@ public abstract class BoatRendererMixin {
     }
     *///? }
 
-    //? >= 26.1 {
+    //? >= 1.21.11 {
     /*@Inject(method = "extractRenderState(Lnet/minecraft/world/entity/vehicle/boat/AbstractBoat;Lnet/minecraft/client/renderer/entity/state/BoatRenderState;F)V", at = @At("RETURN"))
     *///? } else {
     @Inject(method = "extractRenderState(Lnet/minecraft/world/entity/vehicle/AbstractBoat;Lnet/minecraft/client/renderer/entity/state/BoatRenderState;F)V", at = @At("RETURN"))
