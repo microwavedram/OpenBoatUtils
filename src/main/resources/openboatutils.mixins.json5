@@ -13,7 +13,7 @@
     "ClientWorldMixin",
     "EntityMixin",
     "BoatRendererMixin",
-    "HoneyBlockMixin",
+    "HoneyBlockMixin"
     //? >=1.21.3 {
     ,"BoatRenderStateMixin"
     //? }
