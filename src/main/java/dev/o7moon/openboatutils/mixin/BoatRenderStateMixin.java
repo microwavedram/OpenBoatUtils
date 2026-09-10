@@ -1,7 +1,5 @@
-//~ !boat_entity
 package dev.o7moon.openboatutils.mixin;
 
-//? >= 1.21.3 {
 import dev.o7moon.openboatutils.ScaledBoatRenderState;
 import net.minecraft.client.renderer.entity.state.BoatRenderState;
 import org.spongepowered.asm.mixin.Mixin;
@@ -21,4 +19,3 @@ public class BoatRenderStateMixin implements ScaledBoatRenderState {
         openBoatUtils$scale = scale;
     }
 }
-//? }

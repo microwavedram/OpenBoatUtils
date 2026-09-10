@@ -1,6 +1,10 @@
 package dev.o7moon.openboatutils.mixin;
 
+//? >= 26.1 {
+/*import net.minecraft.world.entity.vehicle.boat.AbstractBoat;
+*///? } else {
 import net.minecraft.world.entity.vehicle.AbstractBoat;
+//? }
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Accessor;
 

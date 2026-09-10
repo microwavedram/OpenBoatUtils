@@ -11,7 +11,7 @@ public class StoredContext extends MutableContext {
         this.applyFrom(ISettingContext.VANILLA);
     }
 
-    public ResourceLocation getIdentifier() {
+    public ResourceLocation getResourceLocation() {
         return identifier;
     }
 

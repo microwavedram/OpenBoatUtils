@@ -16,8 +16,13 @@ public class PlayByteBufChannel extends ByteBufChannel<ServerPlayer, ServerPlayN
     }
 
     public void registerCodec() {
+        //? >= 26.1 {
+        /*PayloadTypeRegistry.clientboundPlay().register(id, codec);
+        PayloadTypeRegistry.serverboundPlay().register(id, codec);
+        *///? } else {
         PayloadTypeRegistry.playS2C().register(id, codec);
         PayloadTypeRegistry.playC2S().register(id, codec);
+        //? }
     }
 
     public void registerServerHandler(ServerPlayNetworking.PlayPayloadHandler<BytePayload> handler) {

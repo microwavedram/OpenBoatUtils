@@ -1,7 +1,10 @@
 plugins {
-    id 'fabric-loom' version '1.11-SNAPSHOT'
+    id 'fabric-loom' version "${loom_version}" apply false
+    id 'net.fabricmc.fabric-loom' version "${loom_version}" apply false
     id 'maven-publish'
 }
+
+apply plugin: project.loom_plugin
 
 version = project.mod_version
 group = project.maven_group
@@ -10,16 +13,19 @@ base {
     archivesName = project.archives_base_name
 }
 
-repositories {
-
-}
+repositories {}
 
 dependencies {
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
-    mappings(loom.officialMojangMappings())
-    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
-    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+    if (project.loom_plugin == "fabric-loom") {
+        mappings(loom.officialMojangMappings())
+        modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+        modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+    } else {
+        implementation "net.fabricmc:fabric-loader:${project.loader_version}"
+        implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+    }
 }
 
 def rawVersion = project.findProperty("mod_version")
@@ -32,17 +38,19 @@ processResources {
     inputs.property "minecraft_version", project.minecraft_version
     inputs.property "minecraft_version_allowed_range", project.minecraft_version_allowed_range
     inputs.property "loader_version", project.loader_version
+    inputs.property "fabric_api_version", project.fabric_api_version
     filteringCharset "UTF-8"
 
     filesMatching("fabric.mod.json") {
         expand "version": project.version,
                 "minecraft_version": project.minecraft_version,
                 "minecraft_version_allowed_range": project.minecraft_version_allowed_range,
-                "loader_version": project.loader_version
+                "loader_version": project.loader_version,
+                "fabric_api_version": project.fabric_api_version
     }
 }
 
-def targetJavaVersion = 21
+def targetJavaVersion = project.java_release as int
 tasks.withType(JavaCompile).configureEach {
     it.options.encoding = "UTF-8"
     if (targetJavaVersion >= 10 || JavaVersion.current().isJava10Compatible()) {
@@ -91,17 +99,23 @@ loom {
 
 stonecutter {
     replacements.string(
-            current.parsed.matches('>=1.21.3'),
-            "!boat_entity"
+            current.parsed.matches('>=26.1'),
+            "!identifier"
     ) {
-        replace 'BoatEntity', 'AbstractBoatEntity'
+        replace 'ResourceLocation', 'Identifier'
     }
 
     replacements.string(
-            current.parsed.matches('>=1.21.9'),
-            "!honey_mapping"
+            current.parsed.matches('>=26.1'),
+            "!bytebuf"
     ) {
-        replace 'method_65067', 'getOldVelocityY'
-        replace 'method_65068', 'getNewVelocityY'
+        replace 'PacketByteBufs', 'FriendlyByteBufs'
+    }
+
+    replacements.string(
+            current.parsed.matches('>=26.1'),
+            "!lilypad"
+    ) {
+        replace 'WaterlilyBlock', 'LilyPadBlock'
     }
 }

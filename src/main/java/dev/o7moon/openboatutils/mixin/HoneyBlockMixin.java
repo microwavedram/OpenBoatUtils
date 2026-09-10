@@ -2,7 +2,6 @@ package dev.o7moon.openboatutils.mixin;
 
 
 import org.spongepowered.asm.mixin.Mixin;
-//? > 1.21.1 {
 import dev.o7moon.openboatutils.ISettingContext;
 import dev.o7moon.openboatutils.OpenBoatUtils;
 import net.minecraft.core.BlockPos;
@@ -14,12 +13,9 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-//? }
 
 @Mixin(HoneyBlock.class)
 public class HoneyBlockMixin {
-    //? > 1.21.1 {
-
     @Shadow
     private static double getOldDeltaY(double d) {
         throw new UnsupportedOperationException("Implemented via mixin");
@@ -70,5 +66,4 @@ public class HoneyBlockMixin {
         }
         return getOldDeltaY(v);
     }
-    //? }
 }

@@ -18,8 +18,13 @@ public class ConfigurationByteBufChannel extends ByteBufChannel<ServerConfigurat
     }
 
     public void registerCodec() {
+        //? >= 26.1 {
+        /*PayloadTypeRegistry.clientboundConfiguration().register(id, codec);
+        PayloadTypeRegistry.serverboundConfiguration().register(id, codec);
+        *///? } else {
         PayloadTypeRegistry.configurationS2C().register(id, codec);
         PayloadTypeRegistry.configurationC2S().register(id, codec);
+        //? }
     }
 
     public void registerServerHandler(ServerConfigurationNetworking.ConfigurationPacketHandler<BytePayload> handler) {

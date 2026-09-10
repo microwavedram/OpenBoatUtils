@@ -11,7 +11,7 @@ public class EntityContext extends MutableContext {
         this.applyFrom(ISettingContext.VANILLA);
     }
 
-    public UUID getIdentifier() {
+    public UUID getResourceLocation() {
         return identifier;
     }
 

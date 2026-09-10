@@ -13,10 +13,8 @@
     "ClientWorldMixin",
     "EntityMixin",
     "BoatRendererMixin",
-    "HoneyBlockMixin"
-    //? >=1.21.3 {
-    ,"BoatRenderStateMixin"
-    //? }
+    "HoneyBlockMixin",
+    "BoatRenderStateMixin"
     //? >=1.21.5 {
     /*,"PositionInterpolatorAccessor"
     *///?}

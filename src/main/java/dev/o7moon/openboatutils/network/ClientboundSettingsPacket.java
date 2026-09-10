@@ -5,7 +5,11 @@ import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
+//? >= 26.1 {
+/*import net.minecraft.world.entity.vehicle.boat.AbstractBoat;
+*///? } else {
 import net.minecraft.world.entity.vehicle.AbstractBoat;
+//? }
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Arrays;
@@ -126,8 +130,6 @@ public enum ClientboundSettingsPacket {
         if (packetID >= packets.length) return;
 
         ClientboundSettingsPacket packet = packets[packetID];
-
-        System.out.println(packet.toString());
 
         handleContextPacketPayload(context, buf, packet, isCompound);
     }
